@@ -28,7 +28,7 @@ module Spree::Search
 
       # Solr query parameters: http://wiki.apache.org/solr/CommonQueryParameters
       # Adding the keyword portions sctrictly if there is a word-character match
-      filter_queries  = ["is_active:(true)"]
+      filter_queries  = []
       
       if taxon 
         filter_queries << taxon.self_and_descendants.map{|t| "taxon_ids:(#{t.id})"}.join(" OR ")
