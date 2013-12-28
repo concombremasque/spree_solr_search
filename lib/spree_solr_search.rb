@@ -16,8 +16,10 @@ module SpreeSolrSearch
       require 'websolr_acts_as_solr'
       ENV['RAILS_ENV'] = Rails.env
 
-      Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
-        Rails.configuration.cache_classes ? require(c) : load(c)
+      unless ENV['NOINIT']
+        Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
+          Rails.configuration.cache_classes ? require(c) : load(c)
+        end
       end
       
       # Load application's view overrides
